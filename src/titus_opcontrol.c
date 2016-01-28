@@ -45,7 +45,7 @@ void driveoperation() {
 }
 
 void operatorControl() {
-
-	driveoperation();
+	while(1) 
+		driveoperation();
 
 }

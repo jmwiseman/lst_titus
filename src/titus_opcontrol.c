@@ -21,17 +21,26 @@ void controlmotors(int lb, int rb,int lf,int rf){
 	}
 }
 
-void titus_controldrive(int straif, int forward, int turn) {
+void titus_controldrive(int t, int s, int f) {
+	double straif=f;
+	double turn=t;
+	double forward=f;
 	int lf,lb,rf,rb;
-	int pi = 3.14;
+	float pi = 3.14;
 
-	rf=lf=straif*cos(-pi/4)-forward*sin(-pi/4);
-	rb=lb=straif*sin(-pi/4)+forward*cos(-pi/4);
-	
+	rf=lb=straif*cos(-pi/4)-forward*sin(-pi/4);
+	lb=-lb;
+	rb=lf=straif*sin(-pi/4)+forward*cos(-pi/4);
+	lf=-lf;
+
+/*	rf=lb=straif;
+	lb=-lb;
+	rb=lf=forward;
+	lf=-lf;*/
 	rb+=turn;
-	rf+=turn;
+	rf-=turn;
 	lf-=turn;
-	lb-=turn;
+	lb+=turn;
 
 	controlmotors(lb, rb, lf, rf); 
 }

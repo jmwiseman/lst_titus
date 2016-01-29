@@ -65,6 +65,10 @@ void titus_controldrive(int t, int f, int s) {
 
 	controlmotors(lb, rb, lf, rf); 
 }
+void controldrive(int turn, int forward)
+{
+	titus_controldrive(turn, forward, 0);
+}
 
 void driveoperation() {
 	int joyforward = (abs(joystickGetAnalog(1,JOY_FORWARD_T)) > JOY_DEAD_T) ? joystickGetAnalog(1,JOY_FORWARD_T) : 0;

@@ -81,9 +81,8 @@ void driveoperation() {
 
 void intakemotors(int intakespeed) {
 	if(!DONT_MOVE){
-		motorSet(MOT_INTAKE1, intakespeed);
-		motorSet(MOT_INTAKE2, intakespeed);
-		motorSet(MOT_INTAKE3, intakespeed);
+		motorSet(MOT_INTAKE, intakespeed);
+		motorSet(MOT_CONVEYOR, intakespeed);
 	}
 }
 
@@ -110,9 +109,23 @@ void intakeoperation() {
 	intakecontrol(joyintake,joyouttake);
 }
 
+void flywheelmotors(int wheelspeed) {
+	motorSet(MOT_FLYWHEEL1, wheelspeed);
+	motorSet(MOT_FLYWHEEL2, wheelspeed);
+	motorSet(MOT_FLYWHEEL3, -wheelspeed);
+	motorSet(MOT_FLYWHEEL4, -wheelspeed);
+}
+
+void flywheeloperation() {
+	int joyflywheel = (abs(joystickGetDigital(1,6,JOY_UP)) > JOY_DEAD_T) ? joystickGetDigital(1,6,JOY_UP) : 0; //Change the Joystick number to 2 after testing
+
+	flywheelmotors(joyflywheel);
+}
+
 void operatorControl() {
 	while(1) {
 		driveoperation();
 		intakeoperation();
+		flywheeloperation();
 	}
 }

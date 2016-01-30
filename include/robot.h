@@ -18,6 +18,8 @@
 #define JOY_DEAD_T 20
 #define JOY_STRAFING 4
 
-
+#define MOT_INTAKE1 6
+#define MOT_INTAKE2 7
+#define MOT_INTAKE3 8
 
 #endif /* TITUS_ROBOT_H_ */

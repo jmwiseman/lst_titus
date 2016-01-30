@@ -12,7 +12,7 @@
 
 
 #define DONT_MOVE 0
-void controlmotors(int lb, int rb,int lf,int rf){
+void controlmotors(int lb, int rb, int lf, int rf){
 	if(!DONT_MOVE){
 		motorSet(MOT_LEFT1,lb);
 		motorSet(MOT_LEFT2,lf);
@@ -53,8 +53,40 @@ void driveoperation() {
 	titus_controldrive(joyturn,joyforward,joystrafing);
 }
 
-void operatorControl() {
-	while(1) 
-		driveoperation();
+void intakemotors(int intakespeed) {
+	if(!DONT_MOVE){
+		motorSet(MOT_INTAKE1, intakespeed);
+		motorSet(MOT_INTAKE2, intakespeed);
+		motorSet(MOT_INTAKE3, intakespeed);
+	}
+}
 
+void intakecontrol(int intake, int outtake) {
+	int intakespeed;
+
+	if(intake) {
+		intakespeed = intake;
+	}
+	else if(outtake) {
+		intakespeed = -outtake;
+	}
+	else {
+		intakespeed = 0;
+	}
+
+	intakemotors(intakespeed);
+}
+void intakeoperation() {
+
+	int joyintake = (abs(joystickGetDigital(1,5,JOY_UP)) > JOY_DEAD_T) ? joystickGetDigital(1,5,JOY_UP) : 0; //Change the Joystick number to 2 after testing
+	int joyouttake = (abs(joystickGetDigital(1,5,JOY_DOWN)) > JOY_DEAD_T) ? joystickGetDigital(1,5,JOY_DOWN) : 0; //Change the Joystick number to 2 after testing
+
+	intakecontrol(joyintake,joyouttake);
+}
+
+void operatorControl() {
+	while(1) {
+		driveoperation();
+		intakeoperation();
+	}
 }

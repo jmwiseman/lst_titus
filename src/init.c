@@ -32,7 +32,8 @@
  * obtained from http://sourceforge.net/projects/freertos/files/ or on request.
  */
 
-#include "main.h"
+#include <main.h>
+#include <../include/robot.h>
 
 /*
  * Runs pre-initialization code. This function will be started in kernel mode one time while the
@@ -59,4 +60,8 @@ void initializeIO() {
  * can be implemented in this task if desired.
  */
 void initialize() {
+	rf_encoder = encoderInit(ENC_RIGHT_TOP,ENC_RIGHT1_BOT,1);
+	lf_encoder = encoderInit(ENC_LEFT_TOP,ENC_LEFT1_BOT,0);
+	rb_encoder = encoderInit(ENC_RIGHT_BACK,ENC_RIGHT2_BOT,1);
+	lb_encoder = encoderInit(ENC_LEFT_BACK,ENC_LEFT2_BOT,0);
 }

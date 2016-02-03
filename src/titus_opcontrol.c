@@ -22,9 +22,9 @@ void controlmotors(int lb, int rb, int lf, int rf){
 }
 
 void titus_controldrive(int t, int f, int s) {
-	int strafe=s;
-	int turn=t;
-	int forward=f;
+	int strafe = s;
+	int turn = t;
+	int forward = f;
 	int lf,lb,rf,rb;
 
 	int forward_lf = 1  * forward;
@@ -38,26 +38,11 @@ void titus_controldrive(int t, int f, int s) {
 	int sideways_rb = -1 * strafe;
 
 
-	/*
-	float pi = 3.14;
-
-	rf=lb=straif*cos(-pi/4)-forward*sin(-pi/4);
-	lb=-lb;
-	rb=lf=straif*sin(-pi/4)+forward*cos(-pi/4);
-	lf=-lf;
-	rf=lb=straif;
-	lb=-lb;
-	rb=lf=forward;
-	lf=-lf;
-	//*/
-
-
 	lf = forward_lf + sideways_lf;
 	lb = forward_lb + sideways_lb;
 	rf = forward_rf + sideways_rf;
 	rb = forward_rb + sideways_rb;
 
-	//*/
 	lf+=turn;
 	lb+=turn;
 	rf+=turn;
@@ -82,7 +67,6 @@ void driveoperation() {
 void intakemotors(int intakespeed) {
 	if(!DONT_MOVE){
 		motorSet(MOT_INTAKE, intakespeed);
-		motorSet(MOT_CONVEYOR, intakespeed);
 	}
 }
 
@@ -90,10 +74,10 @@ void intakecontrol(int intake, int outtake) {
 	int intakespeed;
 
 	if(intake) {
-		intakespeed = intake;
+		intakespeed = INTAKESPEED;
 	}
 	else if(outtake) {
-		intakespeed = -outtake;
+		intakespeed = -INTAKESPEED;
 	}
 	else {
 		intakespeed = 0;
@@ -103,8 +87,8 @@ void intakecontrol(int intake, int outtake) {
 }
 void intakeoperation() {
 
-	int joyintake = (abs(joystickGetDigital(1,5,JOY_UP)) > JOY_DEAD_T) ? joystickGetDigital(1,5,JOY_UP) : 0; //Change the Joystick number to 2 after testing
-	int joyouttake = (abs(joystickGetDigital(1,5,JOY_DOWN)) > JOY_DEAD_T) ? joystickGetDigital(1,5,JOY_DOWN) : 0; //Change the Joystick number to 2 after testing
+	int joyintake = joystickGetDigital(1,5,JOY_UP); //Change the Joystick number to 2 after testing
+	int joyouttake = joystickGetDigital(1,5,JOY_DOWN); //Change the Joystick number to 2 after testing
 
 	intakecontrol(joyintake,joyouttake);
 }
@@ -114,12 +98,24 @@ void flywheelmotors(int wheelspeed) {
 	motorSet(MOT_FLYWHEEL2, wheelspeed);
 	motorSet(MOT_FLYWHEEL3, -wheelspeed);
 	motorSet(MOT_FLYWHEEL4, -wheelspeed);
+	motorSet(MOT_FLYWHEEL5, -wheelspeed);
+	motorSet(MOT_FLYWHEEL6, wheelspeed);
 }
 
 void flywheeloperation() {
-	int joyflywheel = (abs(joystickGetDigital(1,6,JOY_UP)) > JOY_DEAD_T) ? joystickGetDigital(1,6,JOY_UP) : 0; //Change the Joystick number to 2 after testing
+	int joyflywheel = WHEELSPEED*joystickGetDigital(1,6,JOY_UP);
 
 	flywheelmotors(joyflywheel);
+}
+
+void rampmotors(int rampspeed) {
+	motorSet(MOT_RAMP1, rampspeed);
+}
+
+void rampoperation() {
+	int joyramp = (abs(joystickGetAnalog(2,JOY_RAMP)) > JOY_DEAD_T) ? joystickGetAnalog(2,JOY_RAMP) : 0;
+
+	rampmotors(joyramp);
 }
 
 void operatorControl() {

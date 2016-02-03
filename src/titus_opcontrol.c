@@ -30,6 +30,18 @@ void titus_controldrive(int t, int f, int s)
 	int forward = f;
 	int lf,lb,rf,rb;
 
+/*
+	int forward_lf = 1  * forward;
+	int forward_lb = -1  * forward;
+	int forward_rf = -1 * forward;
+	int forward_rb = 1 * forward;
+
+	int sideways_lf = 1  * strafe;
+	int sideways_lb = -1 * strafe;
+	int sideways_rf = 1  * strafe;
+	int sideways_rb = -1 * strafe;
+//*/
+
 	int forward_lf = 1  * forward;
 	int forward_lb = 1  * forward;
 	int forward_rf = -1 * forward;
@@ -39,7 +51,6 @@ void titus_controldrive(int t, int f, int s)
 	int sideways_lb = -1 * strafe;
 	int sideways_rf = 1  * strafe;
 	int sideways_rb = -1 * strafe;
-
 
 	lf = forward_lf + sideways_lf;
 	lb = forward_lb + sideways_lb;
@@ -90,8 +101,8 @@ void intakecontrol(int intake, int outtake) {
 }
 void intakeoperation() {
 
-	int joyintake = joystickGetDigital(1,5,JOY_UP); //Change the Joystick number to 2 after testing
-	int joyouttake = joystickGetDigital(1,5,JOY_DOWN); //Change the Joystick number to 2 after testing
+	int joyintake = joystickGetDigital(2,5,JOY_UP);
+	int joyouttake = joystickGetDigital(2,5,JOY_DOWN);
 
 	intakecontrol(joyintake,joyouttake);
 }
@@ -106,7 +117,7 @@ void flywheelmotors(int wheelspeed) {
 }
 
 void flywheeloperation() {
-	int joyflywheel = WHEELSPEED*joystickGetDigital(1,6,JOY_UP);
+	int joyflywheel = WHEELSPEED*joystickGetDigital(2,6,JOY_UP);
 
 	flywheelmotors(joyflywheel);
 }

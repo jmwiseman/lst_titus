@@ -59,9 +59,11 @@ void initializeIO() {
  * will not start. An autonomous mode selection menu like the pre_auton() in other environments
  * can be implemented in this task if desired.
  */
+/*
 void initialize() {
 	rf_encoder = encoderInit(ENC_RIGHT_TOP,ENC_RIGHT1_BOT,1);
 	lf_encoder = encoderInit(ENC_LEFT_TOP,ENC_LEFT1_BOT,0);
 	rb_encoder = encoderInit(ENC_RIGHT_BACK,ENC_RIGHT2_BOT,1);
 	lb_encoder = encoderInit(ENC_LEFT_BACK,ENC_LEFT2_BOT,0);
 }
+//*/

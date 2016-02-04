@@ -21,16 +21,18 @@
 #define JOY_STRAFING 4
 #define JOY_RAMP 3
 
-#define MOT_INTAKE 6
+#define MOT_INTAKE 1
 #define INTAKESPEED 150
 
-#define MOT_FLYWHEEL1 9
-#define MOT_FLYWHEEL2 9
-#define MOT_FLYWHEEL3 8
-#define MOT_FLYWHEEL4 7
-#define MOT_FLYWHEEL5 7
-#define MOT_FLYWHEEL6 1
-#define WHEELSPEED 255
+#define MOT_FLYWHEEL1 2 //right top clock
+#define MOT_FLYWHEEL2 2 //right top clock
+#define MOT_FLYWHEEL3 8 //left top counter
+#define MOT_FLYWHEEL4 8 //left top counter
+#define MOT_FLYWHEEL5 7 //bottom right counter
+#define MOT_FLYWHEEL6 7 //bottom right counter
+#define MOT_FLYWHEEL7 9 //bottom left clock
+#define MOT_FLYWHEEL8 9 //bottom left clock
+#define WHEELSPEED 100
 
 #define MOT_RAMP1 1
 

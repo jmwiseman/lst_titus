@@ -114,14 +114,16 @@ void flywheelmotors(int wheelspeed) {
 	motorSet(MOT_FLYWHEEL3, -wheelspeed);
 	motorSet(MOT_FLYWHEEL4, -wheelspeed);
 	motorSet(MOT_FLYWHEEL5, -wheelspeed);
-	motorSet(MOT_FLYWHEEL6, wheelspeed);
+	motorSet(MOT_FLYWHEEL6, -wheelspeed);
+	motorSet(MOT_FLYWHEEL7, wheelspeed);
+	motorSet(MOT_FLYWHEEL8, wheelspeed);
 }
-
+//*
 void flywheeloperation() {
 	int joyflywheel = WHEELSPEED*joystickGetDigital(2,6,JOY_UP);
 
 	flywheelmotors(joyflywheel);
-}
+}//*/
 
 void rampmotors(int rampspeed) {
 	motorSet(MOT_RAMP1, rampspeed);
@@ -138,5 +140,6 @@ void operatorControl() {
 		driveoperation();
 		intakeoperation();
 		flywheeloperation();
+		delay(20);
 	}
 }

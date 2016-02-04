@@ -36,7 +36,7 @@ int get_foreward()
 
 void forward_ticks(int ticks)//negative speed is backward
 {
-	int speed = AUTO_SPEED * abs(ticks)/ticks;
+	int speed = AUTO_SPEED;// * abs(ticks)/ticks;
 	reset_op();
 	int start_ticks = 0;
 	titus_controldrive(0, speed, 0);
@@ -49,16 +49,19 @@ void forward_ticks(int ticks)//negative speed is backward
 
 int get_sideways()
 {
+	//*
 	int sideways_lf = 1  * encoderGet(lf_encoder);
 	int sideways_lb = -1 * encoderGet(lb_encoder);
 	int sideways_rf = 1  * encoderGet(rf_encoder);
 	int sideways_rb = -1 * encoderGet(rb_encoder);
 	return (sideways_lf + sideways_lb + sideways_rf + sideways_rb) / 4;
+	//*/
+	//return encoderGet(lf_encoder);
 }
 
 void sideways_ticks(int ticks)// positive speed means strafe right
 {
-	int speed = AUTO_SPEED * abs(ticks)/ticks;
+	int speed = AUTO_SPEED;// * abs(ticks)/ticks;
 	reset_op();
 	int start_ticks = 0;
 	titus_controldrive(0, 0, speed);
@@ -80,7 +83,7 @@ int get_turn()
 
 void turn_ticks(int ticks)// positive speed means clockwise
 {
-	int speed = AUTO_SPEED * abs(ticks)/ticks;
+	int speed = AUTO_SPEED;// * abs(ticks)/ticks;
 	reset_op();
 	int start_ticks = 0;
 	titus_controldrive(speed, 0, 0);
@@ -100,7 +103,7 @@ void runop()
 	//*
 	int n = 5;
 	int direc[] = {D_F,D_S,D_T,D_S,D_F};
-	int ticks[] = {1377,1315,1080,3005,1315};
+	int ticks[] = {1377,1315,1080,-3005,1315};
 
 	for(int i=0;i<n;i++)
 	{
@@ -152,9 +155,28 @@ void runop()
 
 }
 
+void init_encoders()
+{
+	rf_encoder = encoderInit(ENC_RF_TOP,ENC_RF_BOT,0);
+	lf_encoder = encoderInit(ENC_LF_TOP,ENC_LF_BOT,0);
+	lb_encoder = encoderInit(ENC_LB_TOP,ENC_LB_BOT,0);
+	rb_encoder = encoderInit(ENC_RB_TOP,ENC_RB_BOT,0);
+}
+
 
 void autonomous()
 {
+	//*
+	//test
+	//titus_controldrive(0, AUTO_SPEED, 0);
+	//delay(1000);
+
+	//initialize encoders and reset them
+	init_encoders();
 	reset_op();
+
+	//navigational code
 	runop();
+
+	//*/
 }

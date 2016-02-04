@@ -25,6 +25,7 @@ void controlmotors(int lb, int rb, int lf, int rf)
 
 void titus_controldrive(int t, int f, int s)
 {
+	printf("titus_controldrive()");
 	int strafe = s;
 	int turn = t;
 	int forward = f;

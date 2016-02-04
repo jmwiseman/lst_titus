@@ -35,17 +35,18 @@
 #define MOT_RAMP1 1
 
 //For autonomous mode code
-#define ENC_RIGHT_TOP 1
-#define ENC_RIGHT1_BOT 2
+#define ENC_RF_TOP 1
+#define ENC_RF_BOT 2
 
-#define ENC_LEFT_TOP 3
-#define ENC_LEFT1_BOT 4
+#define ENC_LF_TOP 3
+#define ENC_LF_BOT 4
 
-#define ENC_RIGHT_BACK 5
-#define ENC_RIGHT2_BOT 6
+#define ENC_LB_TOP 5
+#define ENC_LB_BOT 6
 
-#define ENC_LEFT_BACK 7
-#define ENC_LEFT2_BOT 8
+#define ENC_RB_TOP 7
+#define ENC_RB_BOT 8
+
 #define LCD_PORT uart1
 
 

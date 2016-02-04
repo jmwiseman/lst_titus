@@ -32,7 +32,7 @@
 #define MOT_FLYWHEEL6 7 //bottom right counter
 #define MOT_FLYWHEEL7 9 //bottom left clock
 #define MOT_FLYWHEEL8 9 //bottom left clock
-#define WHEELSPEED 100
+#define WHEELSPEED 127
 
 #define MOT_RAMP1 1
 

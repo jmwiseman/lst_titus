@@ -17,9 +17,9 @@ void controlmotors(int lb, int rb, int lf, int rf)
 	if(!DONT_MOVE)
 	{
 		motorSet(MOT_LEFT1,lb);
-		motorSet(MOT_LEFT2,lf);
+		//motorSet(MOT_LEFT2,lf);
 		motorSet(MOT_RIGHT1,rb);
-		motorSet(MOT_RIGHT2,rf);
+		//motorSet(MOT_RIGHT2,rf);
 	}
 }
 

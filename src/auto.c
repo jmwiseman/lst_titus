@@ -98,11 +98,10 @@ void runop()
 {
 
 #define D_F 0
-#define D_S 1
-#define D_T 2
+#define D_T 1
 	//*
 	int n = 5;
-	int direc[] = {D_F,D_S,D_T,D_S,D_F};
+	int direc[] = {D_F,D_T,D_T,D_T,D_F};
 	int ticks[] = {1377,1315,1080,-3005,1315};
 
 	for(int i=0;i<n;i++)
@@ -112,10 +111,11 @@ void runop()
 		{
 			forward_ticks(ticks[i]);
 		}
+		/*
 		else if(direc[i]==D_S)
 		{
 			sideways_ticks(TEAM*ticks[i]);
-		}
+		}//*/
 		else if(direc[i]==D_T)
 		{
 			turn_ticks(TEAM*ticks[i]);
@@ -128,10 +128,12 @@ void runop()
 		{
 			forward_ticks(ticks[i]*(-1));
 		}
+		/*
 		else if(direc[i]==D_S)
 		{
 			sideways_ticks(TEAM*ticks[i]*(-1));
 		}
+		//*/
 		else if(direc[i]==D_T)
 		{
 			turn_ticks(TEAM*ticks[i]*(-1));
@@ -174,7 +176,11 @@ void autonomous()
 	//initialize encoders and reset them
 	init_encoders();
 	reset_op();
-
+	while(1)
+	{
+		delay(100);
+		printf("%d\n\r",get_foreward());
+	}
 	//navigational code
 	runop();
 

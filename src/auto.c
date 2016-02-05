@@ -31,7 +31,9 @@ int get_foreward()
 	int forward_lb = 1  * encoderGet(lb_encoder);
 	int forward_rf = -1 * encoderGet(rf_encoder);
 	int forward_rb = -1 * encoderGet(rb_encoder);
-	return (forward_lf + forward_lb + forward_rf + forward_rb) / 4;
+	int result = (forward_lf + forward_lb + forward_rf + forward_rb) / 4;
+	printf("%8d\n\r",result);
+	return result;
 }
 
 void forward_ticks(int ticks)//negative speed is backward
@@ -54,7 +56,10 @@ int get_sideways()
 	int sideways_lb = -1 * encoderGet(lb_encoder);
 	int sideways_rf = 1  * encoderGet(rf_encoder);
 	int sideways_rb = -1 * encoderGet(rb_encoder);
-	return (sideways_lf + sideways_lb + sideways_rf + sideways_rb) / 4;
+	//return (sideways_lf + sideways_lb + sideways_rf + sideways_rb) / 4;
+	int result = (sideways_lf + sideways_lb + sideways_rf + sideways_rb) / 4;
+	printf("%8d\n\r",result);
+	return result;
 	//*/
 	//return encoderGet(lf_encoder);
 }
@@ -78,7 +83,10 @@ int get_turn()
 	int turn_lb = 1 * encoderGet(lb_encoder);
 	int turn_rf = 1 * encoderGet(rf_encoder);
 	int turn_rb = 1 * encoderGet(rb_encoder);
-	return (turn_lf + turn_lb + turn_rf + turn_rb) / 4;
+	//return (turn_lf + turn_lb + turn_rf + turn_rb) / 4;
+	int result = (turn_lf + turn_lb + turn_rf + turn_rb) / 4;
+	printf("%8d\n\r",result);
+	return result;
 }
 
 void turn_ticks(int ticks)// positive speed means clockwise
@@ -100,9 +108,9 @@ void runop()
 #define D_F 0
 #define D_T 1
 	//*
-	int n = 5;
-	int direc[] = {D_F,D_T,D_T,D_T,D_F};
-	int ticks[] = {1377,1315,1080,-3005,1315};
+	int n = 7;
+	int direc[] = {D_F,D_T,D_F,D_T,D_F,D_T,D_F};
+	int ticks[] = {1377,-1080,1315,1080,-3005,1080,1315};
 
 	for(int i=0;i<n;i++)
 	{
@@ -179,7 +187,7 @@ void autonomous()
 	while(1)
 	{
 		delay(100);
-		printf("%d\n\r",get_foreward());
+		printf("%8d%8d\n\r",get_foreward());
 	}
 	//navigational code
 	runop();

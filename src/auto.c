@@ -109,22 +109,23 @@ void runop()
 #define D_F 0
 #define D_T 1
 	//*
-	int n = 7;
-	int direc[] = {D_F,D_T,D_F,D_T,D_F,D_T,D_F};
-	int ticks[] = {1377,-1080,1315,1080,-3005,1080,1315};
+	int n = 9;
+	int m = 11;
+	int direc[] = {D_T, D_T,   D_F,  D_T, D_F, D_T,  D_F, D_T, D_F,    D_F, D_T};
+	int ticks[] = {270,-270,  1377,-1080,1315,1080,-3005,1080,1315,  -2630,-540};
 
+	// go get balls
 	for(int i=0;i<n;i++)
 	{
-		ticks[i] *= TEAM;
+		//ticks[i] *= TEAM;
 		if(direc[i]==D_F)
 		{
 			forward_ticks(ticks[i]);
 		}
-		/*
-		else if(direc[i]==D_S)
-		{
-			sideways_ticks(TEAM*ticks[i]);
-		}//*/
+		//else if(direc[i]==D_S)
+		//{
+		//	sideways_ticks(TEAM*ticks[i]);
+		//}
 		else if(direc[i]==D_T)
 		{
 			turn_ticks(TEAM*ticks[i]);
@@ -134,25 +135,55 @@ void runop()
 			intakecontrol(1, 0);
 		}
 	}
-	for(int i=n-1;i>=0;i--)
+	//come back
+	for(int i=n-1;i>=0+2;i--)
 	{
-		ticks[i] *= TEAM;
+		if(i==n-1)
+		{
+			intakecontrol(0, 0);
+		}
+		//ticks[i] *= TEAM;
 		if(direc[i]==D_F)
 		{
 			forward_ticks(ticks[i]*(-1));
 		}
-		/*
-		else if(direc[i]==D_S)
-		{
-			sideways_ticks(TEAM*ticks[i]*(-1));
-		}
-		//*/
+		//else if(direc[i]==D_S)
+		//{
+		//	sideways_ticks(TEAM*ticks[i]);
+		//}
 		else if(direc[i]==D_T)
 		{
 			turn_ticks(TEAM*ticks[i]*(-1));
 		}
 	}
+	//into launch position
+	for(int i=n;i<m;i++)
+	{
+		//ticks[i] *= TEAM;
+		if(direc[i]==D_F)
+		{
+			forward_ticks(ticks[i]);
+		}
+		//else if(direc[i]==D_S)
+		//{
+		//	sideways_ticks(TEAM*ticks[i]);
+		//}
+		else if(direc[i]==D_T)
+		{
+			turn_ticks(TEAM*ticks[i]);
+		}
+	}
 	//*/
+
+	flywheelmotors(WHEELSPEED);
+	delay(4000);
+	while(1)
+	{
+		intakecontrol(1, 0);
+		delay(1000);
+		intakecontrol(0, 0);
+		delay(1000);
+	}
 
 
 
@@ -190,11 +221,14 @@ void autonomous()
 	//initialize encoders and reset them
 	init_encoders();
 	reset_op();
+	/*
 	while(1)
 	{
 		delay(100);
-		printf("%8d%8d\n\r",get_foreward());
+		printf("%8d\n\r",get_foreward());
 	}
+	//*/
+
 	//navigational code
 	runop();
 

@@ -46,6 +46,8 @@ void forward_ticks(int ticks)//negative speed is backward
 	titus_controldrive(0, speed, 0);
 	while (get_foreward() - start_ticks < ticks)
 	{
+		//sanity???
+		printf("%8d -%8d <%8d == true\n\r", get_foreward(), start_ticks, ticks);
 		delay(20);
 	}
 	titus_controldrive(0, 0, 0);
@@ -180,8 +182,10 @@ void runop()
 	delay(4000);
 	while(1)
 	{
+		printf("--------------Conveyor on--------\n\r");
 		intakecontrol(1, 0);
 		delay(1000);
+		printf("--------------Conveyor off-------\n\r");
 		intakecontrol(0, 0);
 		delay(1000);
 	}

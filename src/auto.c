@@ -6,6 +6,7 @@
 
 extern void titus_controldrive(int t, int f, int s);
 extern void intakecontrol(int intake, int outtake);
+void flywheelmotors(int wheelspeed);
 
 /*
 void automotors()

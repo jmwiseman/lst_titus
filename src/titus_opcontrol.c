@@ -31,6 +31,17 @@ void titus_controldrive(int t, int f, int s)
 	int forward = f;
 	int lf,lb,rf,rb;
 
+//*
+	int forward_lf = 1  * forward;
+	int forward_lb = -1  * forward;
+	int forward_rf = 1 * forward;
+	int forward_rb = -1 * forward;
+
+	int sideways_lf = 1  * strafe;
+	int sideways_lb = -1 * strafe;
+	int sideways_rf = -1  * strafe;
+	int sideways_rb = 1 * strafe;
+//*/
 /*
 	int forward_lf = 1  * forward;
 	int forward_lb = -1  * forward;
@@ -42,7 +53,7 @@ void titus_controldrive(int t, int f, int s)
 	int sideways_rf = 1  * strafe;
 	int sideways_rb = -1 * strafe;
 //*/
-
+/*
 	int forward_lf = 1  * forward;
 	int forward_lb = 1  * forward;
 	int forward_rf = -1 * forward;
@@ -52,6 +63,7 @@ void titus_controldrive(int t, int f, int s)
 	int sideways_lb = -1 * strafe;
 	int sideways_rf = 1  * strafe;
 	int sideways_rb = -1 * strafe;
+//*/
 
 	lf = forward_lf + sideways_lf;
 	lb = forward_lb + sideways_lb;
@@ -131,7 +143,8 @@ void rampmotors(int rampspeed) {
 }
 
 void rampoperation() {
-	int joyramp = (abs(joystickGetAnalog(2,JOY_RAMP)) > JOY_DEAD_T) ? joystickGetAnalog(2,JOY_RAMP) : 0;
+	//int joyramp = (abs(joystickGetAnalog(2,JOY_RAMP)) > JOY_DEAD_T) ? joystickGetAnalog(2,JOY_RAMP) : 0;
+	int joyramp =  joystickGetDigital(1,JOY_RAMP,1)*RAMPSPEED - joystickGetDigital(1,JOY_RAMP,3)*RAMPSPEED;
 
 	rampmotors(joyramp);
 }
@@ -141,6 +154,7 @@ void operatorControl() {
 		driveoperation();
 		intakeoperation();
 		flywheeloperation();
+		rampoperation();
 		delay(20);
 	}
 }

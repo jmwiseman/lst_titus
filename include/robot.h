@@ -9,10 +9,10 @@
 #ifndef TITUS_ROBOT_H_
 #define TITUS_ROBOT_H_
 
-#define MOT_LEFT1 4
-#define MOT_LEFT2 2
-#define MOT_RIGHT1 5
-#define MOT_RIGHT2 3
+#define MOT_LEFT1 4 //back
+#define MOT_LEFT2 6 //front not plugged in (port 6 does not work)
+#define MOT_RIGHT1 10 //back
+#define MOT_RIGHT2 3 //front
 
 #define JOY_TURN_T 1
 #define JOY_FORWARD_T 2
@@ -32,9 +32,10 @@
 #define MOT_FLYWHEEL6 7 //bottom right counter
 #define MOT_FLYWHEEL7 9 //bottom left clock
 #define MOT_FLYWHEEL8 9 //bottom left clock
-#define WHEELSPEED 127
+#define WHEELSPEED 128
+#define RAMPSPEED 64
 
-#define MOT_RAMP1 1
+#define MOT_RAMP1 3
 
 //For autonomous mode code
 #define ENC_RF_TOP 1
@@ -50,6 +51,8 @@
 #define ENC_RB_BOT 8
 
 #define LCD_PORT uart1
+
+
 
 
 

@@ -110,6 +110,7 @@ void runop()
 {
 
 #define D_F 0
+#define D_S 2
 #define D_T 1
 	//*
 	int n = 9;
@@ -222,10 +223,6 @@ void autonomous()
 	//test
 	//titus_controldrive(0, AUTO_SPEED, 0);
 	//delay(1000);
-
-	//initialize encoders and reset them
-	init_encoders();
-	reset_op();
 	/*
 	while(1)
 	{
@@ -233,6 +230,11 @@ void autonomous()
 		printf("%8d\n\r",get_foreward());
 	}
 	//*/
+
+	/*
+	//initialize encoders and reset them
+	init_encoders();
+	reset_op();
 
 	//navigational code
 	runop();

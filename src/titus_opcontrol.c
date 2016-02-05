@@ -85,7 +85,8 @@ void intakemotors(int intakespeed) {
 	}
 }
 
-void intakecontrol(int intake, int outtake) {
+void intakecontrol(int intake, int outtake)
+{
 	int intakespeed;
 
 	if(intake) {

@@ -5,6 +5,7 @@
 #include <limits.h>
 
 extern void titus_controldrive(int t, int f, int s);
+extern void intakecontrol(int intake, int outtake);
 
 /*
 void automotors()
@@ -128,6 +129,10 @@ void runop()
 		{
 			turn_ticks(TEAM*ticks[i]);
 		}
+		if(i==n-1)
+		{
+			intakecontrol(1, 0);
+		}
 	}
 	for(int i=n-1;i>=0;i--)
 	{
@@ -148,6 +153,7 @@ void runop()
 		}
 	}
 	//*/
+
 
 
 	/*
